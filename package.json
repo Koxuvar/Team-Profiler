@@ -1,0 +1,27 @@
+{
+  "name": "team-profiler",
+  "version": "1.0.0",
+  "description": "A CLI app to build a quick html file with cards for team members with role descriptions",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Koxuvar/Team-Profiler.git"
+  },
+  "author": "Connor Sullivan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Koxuvar/Team-Profiler/issues"
+  },
+  "homepage": "https://github.com/Koxuvar/Team-Profiler#readme",
+  "dependencies": {
+    "inquirer": "^8.0.0",
+    "jest": "^26.6.3"
+  }
+}
