@@ -8,27 +8,30 @@ const Employee = require('./lib/Employee');
 
 async function App()
 {
+    let arrOfEmps = [];
+
+    let ans = await inq.prompt(prompts.eManager);
+    const manDetails = [ans.eName, ans.eID, ans.eEmail, ans.eOfficeNumber];
+    let manToAdd = new Manager(...manDetails);
+    arrOfEmps.push(manToAdd);
+
+
     let q = 1;
     while(q !== "done")
     {
         let empToAdd;
-        let arrOfEmps;
         if(q == 1)
         {
-            let ans = await inq.prompt(prompts);
+            let ans = await inq.prompt(prompts.eGeneric);
             const genDetails = [ans.eName, ans.eID, ans.eEmail];
             switch(ans.eSelector)
             {
-                case('Manager'):
-                    empToAdd = new Manager(...genDetails, ans.eOfficeNumber);
-                    break;
                 case('Engineer'):
                     empToAdd = new Engineer(...genDetails, ans.eGithub);
                     break;
                 case('Intern'):
                     empToAdd = new Intern(...genDetails, ans.eSchool);
                     break;
-
                 default:
                     empToAdd = new Employee();
             }
