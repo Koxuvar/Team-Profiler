@@ -31,7 +31,7 @@ A Node.js based CLI app to build a quick team profile page in html.
  [![App Demonstration](https://img.youtube.com/vi/NP820Yo6SW8/0.jpg)](https://www.youtube.com/watch?v=NP820Yo6SW8)
 
 ### Results
- ![screnshot of output](public\Images\GeneratedSiteSC-1.png)
+ ![screnshot of output](./public/Images/GeneratedSiteSC-1.png)
 
  ## Contributing
 
