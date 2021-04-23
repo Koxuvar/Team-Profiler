@@ -43,15 +43,16 @@ const makeEmployee = (sel) =>
 }
 
 /**
- * !TBD
+ * buildTeam
+ * takes the array of employees and creates cards for each from template files then adds those to a template html page and writes that to a file in the dist folder
  */
 const buildTeam = () =>
 {
-    let empCards = ``;
+    let empCards = '';
 
     arrEmps.forEach((e) =>
         { 
-            let htmlContent = fs.readFileSync(`./src/${e.getRole()}Card.ejs`, 'utf8');
+            let htmlContent = fs.readFileSync(__dirname + `/src/${e.getRole()}Card.ejs`, 'utf8');
             let card = ejs.render(htmlContent, e);
             empCards += card + '\n';
         });
@@ -59,10 +60,21 @@ const buildTeam = () =>
     let htmlContent = fs.readFileSync(__dirname + '/src/TemplateIndex.ejs', 'utf8');
     let fullHTML = ejs.render(htmlContent, {cards: empCards});
 
+    if(!fs.existsSync(__dirname + '/dist'))
+    {
+        fs.mkdirSync(__dirname + '/dist');
+    }
+
     fs.writeFileSync(__dirname + '/dist/team-profile.html', fullHTML, (err) =>
     {
-        if(err) throw err;
-        console.log('File Written Succesfully');
+        if(err)
+        { 
+            throw err
+        }
+        else
+        {
+            console.log('File Written Succesfully');
+        }
     });
             
 }
