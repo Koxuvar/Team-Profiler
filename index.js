@@ -2,6 +2,7 @@
 
 const inq = require('inquirer');
 const fs = require('fs');
+const ejs = require('ejs');
 const prompts = require('./lib/inquirer/prompts');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
@@ -46,7 +47,24 @@ const makeEmployee = (sel) =>
  */
 const buildTeam = () =>
 {
-    console.log(arrEmps);
+    let empCards = ``;
+
+    arrEmps.forEach((e) =>
+        { 
+            let htmlContent = fs.readFileSync(`./src/${e.getRole()}Card.ejs`, 'utf8');
+            let card = ejs.render(htmlContent, e);
+            empCards += card + '\n';
+        });
+
+    let htmlContent = fs.readFileSync(__dirname + '/src/TemplateIndex.ejs', 'utf8');
+    let fullHTML = ejs.render(htmlContent, {cards: empCards});
+
+    fs.writeFileSync(__dirname + '/dist/team-profile.html', fullHTML, (err) =>
+    {
+        if(err) throw err;
+        console.log('File Written Succesfully');
+    });
+            
 }
 
 
